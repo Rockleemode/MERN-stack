@@ -18,26 +18,35 @@ font-weight: 700;
 
 nav{
   background-color: #fff;
+  position: relative;
 }
 
 .nav-bar{
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   max-width: 1400px;
   margin: 0 auto;
   padding:20px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  z-index:1;
+}
+
+.nav-bar a,h2:hover{
+  color: var(--primary);
 }
 
 .nav-bar a{
   color: #333;
   text-decoration: none;
+  margin-left: 20px;
 }
 
-.home, .about, .footer{
+.home, .contact, .about, .footer{
   max-width: 1400px;
   padding: 20px;
-  margin: 0 auto;
+  margin: 0px auto;
 }
 
 .home{
@@ -45,7 +54,6 @@ nav{
   grid-template-columns: 3fr 1fr;
   gap: 100px;
 }
-
 .workout-details{
   position: relative;
   background:#fff;
@@ -73,4 +81,35 @@ nav{
   padding: 6px;
   border-radius:50%;
   color: #333;
+}
+
+.form {
+  padding: 20px;
+}
+
+.form input{
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0 0 10px;
+  width: 100%;
+  padding: 10px 5px;
+  border: none;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+  border-radius: 4px;
+}
+
+input:hover{
+  outline: 1px solid var(--primary);
+}
+
+label{
+  font-size: larger;
+}
+
+button{
+  border: none;
+  background-color: var(--primary);
+  padding: 5px;
+  border-radius: 4px;
+  font-family: 'Maven Pro', sans-serif;
+  cursor: pointer;
 }

@@ -4,7 +4,7 @@ const Schema = require("../models/workoutModel");
 //GET all documents
 const getWorkouts = async (req, res) => {
   try {
-    const workout = await Schema.find();
+    const workout = await Schema.find().sort({createdAt:-1});
     res.status(200).json(workout);
   } catch (error) {
     console.error("there is an error", error.message);
@@ -42,8 +42,8 @@ const createWorkout = async (req, res) => {
     });
     res.json(workout);
   } catch (error) {
-    console.error("there is an error");
-    res.status(500).json(error.message);
+    console.error("there is an error", error.message);
+    res.status(400).json(error.message);
   }
 };
 
