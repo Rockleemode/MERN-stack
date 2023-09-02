@@ -1,5 +1,6 @@
 import useWorkout from "../hooks/useWorkout";
 import deletebtn from "../icons/delete.svg";
+import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 
 const WorkoutDetails = ({ workout }) => {
 
@@ -17,9 +18,10 @@ const WorkoutDetails = ({ workout }) => {
     }
     return ( 
         <div className="workout-details">
-            <h3>{workout.title}</h3>
+            <h3>{workout.title}</h3> 
             <p><b>reps:</b>{workout.reps}</p>
             <p><strong>load(kg):</strong>{workout.load}</p>
+            <p>{formatDistanceToNow(new Date(workout.createdAt), {addSuffix:true})}</p>
             <span onClick={handleClick}><img src={deletebtn} alt="trash icon"/></span>
         </div>
      );

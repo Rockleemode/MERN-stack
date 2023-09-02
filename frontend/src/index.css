@@ -43,7 +43,13 @@ nav{
   margin-left: 20px;
 }
 
-.home, .contact, .about, .footer{
+.footer{
+  display: flex;
+  justify-content: center;
+  padding-bottom:20px ;
+}
+
+.home, .contact, .about{
   max-width: 1400px;
   padding: 20px;
   margin: 0px auto;
@@ -69,6 +75,7 @@ nav{
 }
 .workout-details p{
   margin: 0;
+  padding: 2px;
   font-size: 0.9em;
   color: #555;
 }
@@ -112,4 +119,12 @@ button{
   border-radius: 4px;
   font-family: 'Maven Pro', sans-serif;
   cursor: pointer;
+}
+
+.error{
+  border:2px solid black;
+  margin: 10px;
+  padding: 10px;
+  background-color: var(--error);
+  border-radius: 4px;
 }

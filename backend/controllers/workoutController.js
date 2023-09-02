@@ -35,6 +35,10 @@ const getWorkout = async (req, res) => {
 const createWorkout = async (req, res) => {
   try {
     const { title, reps, load } = req.body;
+
+    if (!title || !reps || !load) {
+      return res.status(400).json({error: "Incomplete data provided" });
+    }
     const workout = await Schema.create({
       title,
       reps,
@@ -42,8 +46,7 @@ const createWorkout = async (req, res) => {
     });
     res.json(workout);
   } catch (error) {
-    console.error("there is an error", error.message);
-    res.status(400).json(error.message);
+    res.status(500).json({error:error.message});
   }
 };
 

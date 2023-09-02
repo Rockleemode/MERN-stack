@@ -1,6 +1,9 @@
 const express = require("express");
 const routes = require("./routes/workoutsRoutes");
+const userRoutes = require("./routes/userRoutes")
 const mongoose = require("mongoose");
+
+//configuration of environment variables
 require("dotenv").config();
 
 const app = express();
@@ -24,3 +27,4 @@ mongoose
 
 //routes
 app.use("/api/workouts", routes);
+app.use("/api/users", userRoutes)
