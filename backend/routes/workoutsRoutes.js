@@ -9,7 +9,10 @@ const {
     deleteWorkout
 
 } = require("../controllers/workoutController")
+const requireAuth = require("../middlewares/requireAuth")
 
+//authorization middleware
+routes.use(requireAuth);
 
 //GET request
 routes.get("/", getWorkouts)

@@ -12,21 +12,28 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
+
+  confirmPassword:{
+    type:String
+  }
 });
 
 //signup static method
-userSchema.statics.signup = async function (email, password) {
-    if(!email || !password){
+userSchema.statics.signup = async function (email, password, confirmPassword) {
+  const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
+    if(!email || !password || !confirmPassword){
         throw Error("All fields must be filled")
     }
 
     if(!validator.isEmail(email)){
         throw Error("Not a valid Email!!!") 
     }
-    if(!validator.isStrongPassword(password)){
-        throw Error("the password need to be atleast 8 alphanumeric with a special char")
+    if(!regex.test(password)){
+        throw Error("the password need to be atleast 8 alphanumeric")
     }
-
+    if(confirmPassword !== password){
+      throw Error("passswords do not match")
+    }
   const exists = await this.findOne({ email });
 
   if (exists) {
@@ -34,7 +41,7 @@ userSchema.statics.signup = async function (email, password) {
   }
   const salt = await bcrypt.genSalt(10);
   const hash = await bcrypt.hash(password, salt);
-  const data = await this.create({ email, password: hash });
+  const data = await this.create({ email, password: hash, confirmPassword: hash});
   return data;
 };
 

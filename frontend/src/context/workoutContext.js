@@ -9,7 +9,7 @@ const workoutReducer = (state, action) =>{
     case "SET_WORKOUTS":
       return {workouts: action.payload}
     case "DELETE_WORKOUT":
-      return{workouts:state.workouts.filter((w) => w._id !== action.payload._id)}
+      return {workouts:state.workouts.filter((w) => w._id !== action.payload._id)}
     default:
   }
 }

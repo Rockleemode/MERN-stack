@@ -29,7 +29,7 @@ nav{
   align-items: center;
   max-width: 1400px;
   margin: 0 auto;
-  padding:20px 20px;
+  padding:10px 20px;
   z-index:1;
 }
 
@@ -127,4 +127,64 @@ button{
   padding: 10px;
   background-color: var(--error);
   border-radius: 4px;
+}
+.login, .signup{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+  margin-top: 20px;
+}
+
+.login input, .signup input{
+  font-family: Arial, Helvetica, sans-serif;
+  display: block;
+  width: 250px;
+  margin: 0 0 10px;
+  padding: 10px 5px;
+  border: none;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+  border-radius: 4px;
+}
+
+.login h1, .signup h1{
+  position: absolute;
+  top:15%;
+}
+.user{
+  margin-left: 2px;
+  height: 30px;
+}
+.delete{
+  display: flex;
+  align-items: baseline;
+  cursor: pointer;
+
+}
+.user-img{
+  width: 40px;
+  height: 40px;
+  transform: translateY(12px);
+}
+.btn{ 
+  background-color: transparent;
+  color: #1aac83;
+  border: 2px solid var(--primary);
+  padding: 10px;
+  margin-left: 10px;
+}
+
+.btn:hover{
+  background-color: #1aac83;
+  color: white;
+}
+
+.span{
+  border-left: 3px solid black;
+  padding-left: 5px;
+  margin-left: 10px;
+}
+
+a{
+  text-decoration: none;
 }

@@ -1,3 +1,4 @@
+import useAuth from "../hooks/useAuth";
 import useWorkout from "../hooks/useWorkout";
 import deletebtn from "../icons/delete.svg";
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
@@ -5,16 +6,24 @@ import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 const WorkoutDetails = ({ workout }) => {
 
     const {dispatch} = useWorkout();
-
+    const { user } = useAuth();
+    
     const handleClick = async() =>{
+        if(!user){
+            return;
+        }
+
         const response = await fetch(`/api/workouts/${workout._id}`, {
             method:"DELETE",
-            Headers:{"Content-Type":"application/json"}
+            headers:{"Content-Type":"application/json", "Authorization":`Bearer ${user.token}`
+        }
         })
+        
         if(response.ok){
             const data = await response.json()
             dispatch({type:"DELETE_WORKOUT", payload:data})
         }
+    
     }
     return ( 
         <div className="workout-details">

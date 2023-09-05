@@ -1,10 +1,13 @@
 const mongoose = require("mongoose");
 const Schema = require("../models/workoutModel");
 
+
+
 //GET all documents
 const getWorkouts = async (req, res) => {
   try {
-    const workout = await Schema.find().sort({createdAt:-1});
+    const user_id = req.user._id
+    const workout = await Schema.find( {user_id} ).sort({createdAt:-1});
     res.status(200).json(workout);
   } catch (error) {
     console.error("there is an error", error.message);
@@ -35,6 +38,7 @@ const getWorkout = async (req, res) => {
 const createWorkout = async (req, res) => {
   try {
     const { title, reps, load } = req.body;
+    const user_id  = req.user._id;
 
     if (!title || !reps || !load) {
       return res.status(400).json({error: "Incomplete data provided" });
@@ -43,10 +47,11 @@ const createWorkout = async (req, res) => {
       title,
       reps,
       load,
+      user_id
     });
-    res.json(workout);
+    res.status(200).json(workout);
   } catch (error) {
-    res.status(500).json({error:error.message});
+    res.status(400).json({error:error.message});
   }
 };
 

@@ -1,25 +1,28 @@
-import {Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from "react-router-dom";
+import {BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
-import About from "./pages/About";
-import Root from "./layouts/Root";
-import Contact from "./pages/Contact";
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
+import useAuth from "./hooks/useAuth";
+import NavBar from "./components/NavBar";
+import Footer from "./components/Footer";
 
-const router = createBrowserRouter(
-  createRoutesFromElements(
-    <Route path="/" element={<Root/>}>
-      <Route index element={<Home/>} />
-      <Route path="contact" element={<Contact/>} />
-      <Route path="about" element={<About/>} />
-    </Route>
-  )
-  )
 
 function App() {
+  const { user } = useAuth();
   return (
       <div className="App">
-          <RouterProvider router={router} />
+        <BrowserRouter>
+        <NavBar />
+        <Routes>
+        <Route index element={user ? <Home/>: <Navigate to='/login'/>} />
+        <Route path="login" element={!user ? <Login/>: <Navigate to='/'/>} />
+        <Route path="/login/signup" element={!user? <SignUp/> : <Navigate to='/'/>} />
+        </Routes>
+        <Footer />
+        </BrowserRouter>
       </div>
   )
 }
+
 
 export default App;
